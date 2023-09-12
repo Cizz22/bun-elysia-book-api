@@ -1,7 +1,12 @@
 import { Elysia } from "elysia";
 import { swagger } from "@elysiajs/swagger"
-import { bookPlugin } from "./plugins/book.plugin";
+
 import { HttpException } from "./exceptions/http.exception";
+
+import { bookPlugin } from "./plugins/book.plugin";
+import { authorPlugin } from "./plugins/author.plugin";
+
+
 
 const app = new Elysia()
   .use(swagger({
@@ -27,11 +32,12 @@ const app = new Elysia()
     }
   })
   .use(bookPlugin)
+  .use(authorPlugin)
   .listen(Bun.env.PORT || 3000)
 
-  console.log(
-    `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`,
-  );
+console.log(
+  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`,
+);
 
 
 
