@@ -1,15 +1,10 @@
-# Elysia with Bun runtime
+# Book Management Using Bun and Elysia
 
-## Getting Started
-To get started with this template, simply paste this command into your terminal:
-```bash
-bun create elysia ./elysia-example
-```
+## Introduction
 
-## Development
-To start the development server run:
-```bash
-bun run dev
-```
+This repository highlights the use of Bun and Elysia, which has recenly a stable, production-ready status as September 8th 2023, to create a simpel API such as Book Management System.
 
-Open http://localhost:3000/ with your browser to see the result.
+## Build and Run
+
+- Follow the [Bun's Guide](https://bun.sh/docs) for initial setup.
+
