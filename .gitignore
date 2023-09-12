@@ -36,7 +36,7 @@ yarn-error.log*
 
 **/*.trace
 **/*.zip
-**/*.tar.gz
+**/*.tar.gz 
 **/*.tgz
 **/*.log
 package-lock.json
