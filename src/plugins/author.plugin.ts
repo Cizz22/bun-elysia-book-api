@@ -26,40 +26,50 @@ export const authorPlugin = new Elysia()
             set.status = 200
             return result
         })
-        .get('/:id', async ({ params, set }) => {
-            const result = await authorController.getAuthorById(+params.id)
 
-            set.status = 200
-            return result
-        })
-        .put('/:id', async ({ params, body, set }) => {
-            const result = await authorController.updateAuthor(+params.id, body)
+        .group('/:id', app => app
+            .get('/', async ({ params, set }) => {
+                const result = await authorController.getAuthorById(+params.id)
 
-            set.status = 200
-            return result
-        }, {
-            body: t.Object({
-                name: t.String(),
-                age: t.Number(),
-            }),
-        })
-        .delete('/:id', async ({ params, set }) => {
-            const result = await authorController.deleteAuthor(+params.id)
+                set.status = 200
+                return result
+            })
+            .get('/books', async ({ params, set }) => {
+                const result = await authorController.getAuthorBooks(+params.id)
 
-            set.status = 200
-            return result
-        })
-        .post('/:authorId/books/:bookId', async ({ params, set }) => {
-            const result = await authorController.addBookToAuthor(+params.authorId, +params.bookId)
+                set.status = 200
+                return result
+            })
+            .post('/books', async ({ params, body, set }) => {
+                const result = await authorController.addBookToAuthor(+params.id, body.bookId)
 
-            set.status = 200
-            return result
-        })
-        .get('/:authorId/books', async ({ params, set }) => {
-            const result = await authorController.getAuthorBooks(+params.authorId)
+                set.status = 200
+                return result
+            }, {
+                body: t.Object({
+                    bookId: t.Number(),
+                })
+            })
+            .delete('/', async ({ params, set }) => {
+                const result = await authorController.deleteAuthor(+params.id)
 
-            set.status = 200
-            return result
-        })
+                set.status = 200
+                return result
+            })
+            .put('/', async ({ params, body, set }) => {
+                const result = await authorController.updateAuthor(+params.id, body)
+
+                set.status = 200
+                return result
+            }, {
+                body: t.Object({
+                    name: t.String(),
+                    age: t.Number(),
+                }),
+            })
+        )
+
+
+
 
     )
